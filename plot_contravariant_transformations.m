@@ -5,6 +5,7 @@ clf
 % physical cell properties
 %cell_vertices = [1,0; 2,1; 0,1; 1,2];
 cell_vertices = [0.1,0; 0.2,0.1; 0,0.1; 0.1,0.2];
+%cell_vertices = [1,0; 0,0; 1,1; 0,1];
 
 nx = 20;
 ny = 20;
@@ -147,7 +148,7 @@ for i=1:length(x)
     phi = Vector_bubble_function([X(i,j),Y(i,j)]);
     J = Jacobian_Bilinear(cell_vertices,[X(i,j),Y(i,j)]);
     
-    phi = 1/sqrt(det(J))*(J*phi')';
+    phi = 1/sqrt(abs(det(J)))*(J*phi')';
     
     physical_point = Mapping_Bilinear(cell_vertices,[X(i,j),Y(i,j)]);
     X(i,j) = physical_point(1);
